@@ -80,7 +80,7 @@ module graphicsDP(clock, resetn, record,//clock reset record
 	);
 	
 	input clock, resetn, move, drawCursorEn, drawNoteEn, eraseCursor, drawBackground, unDone, blacken;
-	input [?:?] data;
+	input [7:0] data;
 	
 	output plot;
 	output [7:0] x;
@@ -88,9 +88,8 @@ module graphicsDP(clock, resetn, record,//clock reset record
 	output [2:0] colour;
 	
 	//for accessing data
-	output reg [?:?] track; //TODO: we need to discuss with dylan what these values are
-	output reg [?:?] note;
-	output reg [?:?] sample;
+	output reg [1:0] track; //TODO: we need to discuss with dylan what these values are
+	output reg [14:0] sample;
 	
 	output reg done;
 
@@ -174,7 +173,7 @@ module graphicsDP(clock, resetn, record,//clock reset record
 				end
 			else if (drawNoteEn)
 				
-				//TODO: check on dylan and confirm method for accessing track
+				//uhhh i guess one octave for now
 				
 				begin
 					if (cursorX != 0) //this just prevents writing notes one pixel too far to the left since our convention is writing after cursor passes over
